@@ -1,0 +1,15 @@
+
+notify:
+  extends: .notify
+
+variables:
+  COMPONENT: monitoring
+
+include:
+  - project: 'MISP/helper-containers'
+    ref: master
+    file: '/.gitlab-ci-template.yml'
+#
+# For a cleaner Gitlab CI file include all subfolder which should be build:
+#
+  - 'v1.15.0/.gitlab-ci.yml'

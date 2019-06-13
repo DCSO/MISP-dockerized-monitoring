@@ -1,0 +1,17 @@
+build-v1.15.0:
+  extends: .build
+  variables:
+    FOLDER: v1.15.0
+    VERSION: "$FOLDER"
+    TAGS: "${FOLDER}-dev latest-dev"
+    #DEBUG: "false"
+    RELEASE_DATE: 2019-06
+
+test-v1.15.0:
+  extends: .test
+  variables:
+    FOLDER: v1.15.0
+    VERSION: "$FOLDER"
+  only:
+    changes:
+    - v1.15.0/*

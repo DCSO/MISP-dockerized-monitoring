@@ -1,0 +1,28 @@
+language: minimal
+dist: xenial
+addons:
+  apt:
+    sources:
+      - docker-xenial
+
+env:
+  global:
+  #- DOCKER_COMPOSE_VERSION=1.4.2
+  - COMPONENT=monitoring
+
+  matrix:
+  - FOLDER=v1.15.0
+
+script:
+- docker build -f "$TRAVIS_BUILD_DIR/$FOLDER/Dockerfile" 
+                      --build-arg VCS_REF="$TRAVIS_COMMIT" 
+                      --build-arg VERSION="$FOLDER" 
+                      --build-arg GIT_REPO="https://github.com/$TRAVIS_REPO_SLUG" 
+                      --build-arg COMPONENT="$COMPONENT"
+                      --build-arg BUILD_DATE="$(date -u +"%Y-%m-%d")"
+                      "$TRAVIS_BUILD_DIR/$FOLDER"
+
+
+# don't notify me when things fail
+notifications:
+  email: false
