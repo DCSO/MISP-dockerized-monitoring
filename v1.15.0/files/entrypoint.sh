@@ -1,11 +1,11 @@
 #!/bin/sh
 set -eu
 
-
-
 jobs_httpcheck="
-- name: https://${HOSTNAME}/users/login
-  url: https://${HOSTNAME}/users/login
+- name: https://${HOSTNAME}
+  url: https://${HOSTNAME}
+  not_follow_redirects: no
+  tls_skip_verify: yes
 "
 
 jobs_mysql="
@@ -20,10 +20,16 @@ misp-redis:
     port     : ${REDIS_PORT}
 "
 
-echo "$jobs_httpcheck" >> /etc/netdata/go.d/httpcheck.conf
-echo "$jobs_mysql" >> /etc/netdata/go.d/mysql.conf
-echo "$jobs_redis" >> /etc/netdata/python.d/redis.conf
+jobs_x509="
+  - name: https://${HOSTNAME}
+    source: https://${HOSTNAME}
+"
 
+# First check if job exists, if not add it
+! grep -q "$jobs_httpcheck" /etc/netdata/go.d/httpcheck.conf && echo "$jobs_httpcheck" >> /etc/netdata/go.d/httpcheck.conf
+! grep -q "$jobs_mysql" /etc/netdata/go.d/mysql.conf && echo "$jobs_mysql" >> /etc/netdata/go.d/mysql.conf
+! grep -q "$jobs_x509" /etc/netdata/go.d/x509check.conf && echo "$jobs_x509" >> /etc/netdata/go.d/x509check.conf
+! grep -q "$jobs_redis" /etc/netdata/python.d/redis.conf && echo "$jobs_redis" >> /etc/netdata/python.d/redis.conf
 
 # Start Default Netdata Entrypoint
 exec /usr/sbin/run.sh
