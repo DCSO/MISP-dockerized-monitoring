@@ -5,6 +5,10 @@ notify:
 variables:
   COMPONENT: monitoring
 
+.build:
+  only:
+    - feat/MDD-221
+
 include:
   - project: 'MISP/helper-containers'
     ref: master
