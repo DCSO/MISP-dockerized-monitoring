@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 
+# shellcheck disable=2039
 jobs_httpcheck="
 - name: https://${HOSTNAME}
   url: https://${HOSTNAME}
@@ -20,6 +21,7 @@ misp-redis:
     port     : ${REDIS_PORT}
 "
 
+# shellcheck disable=2039
 jobs_x509="
   - name: https://${HOSTNAME}
     source: https://${HOSTNAME}
