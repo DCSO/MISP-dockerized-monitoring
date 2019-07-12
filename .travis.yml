@@ -12,6 +12,7 @@ env:
 
   matrix:
   - FOLDER=v1.15.0
+  - FOLDER=v1.16.0
 
 script:
 - docker build -f "$TRAVIS_BUILD_DIR/$FOLDER/Dockerfile" 

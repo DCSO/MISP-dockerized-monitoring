@@ -4,7 +4,7 @@ build-v1.15.0:
   variables:
     FOLDER: v1.15.0
     VERSION: "$FOLDER"
-    TAGS: "${FOLDER}-dev 1-dev latest-dev"
+    TAGS: "${FOLDER}-dev"
     RELEASE_DATE: 2019-06
   
 test-v1.15.0:
@@ -12,7 +12,7 @@ test-v1.15.0:
   variables:
     FOLDER: v1.15.0
     VERSION: "$FOLDER"
-    TAGS: "${FOLDER}-dev 1-dev latest-dev"
+    TAGS: "${FOLDER}-dev"
     RELEASE_DATE: 2019-06
   only:
     changes:
