@@ -6,7 +6,7 @@ variables:
   COMPONENT: monitoring
 
   .build:
-    only:
+    - only:
       - feat/MDD-221
 
 include:
