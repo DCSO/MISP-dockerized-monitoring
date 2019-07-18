@@ -13,3 +13,5 @@ include:
 # For a cleaner Gitlab CI file include all subfolder which should be build:
 #
   - 'v1.15.0/.gitlab-ci.yml'
+  - 'v1.16.0/.gitlab-ci.yml'
+

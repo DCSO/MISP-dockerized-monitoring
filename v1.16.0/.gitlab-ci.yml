@@ -1,0 +1,19 @@
+
+build-v1.16.0:
+  extends: .build
+  variables:
+    FOLDER: v1.16.0
+    VERSION: "$FOLDER"
+    TAGS: "${FOLDER}-dev 1-dev latest-dev"
+    RELEASE_DATE: 2019-07
+  
+test-v1.16.0:
+  extends: .test
+  variables:
+    FOLDER: v1.16.0
+    VERSION: "$FOLDER"
+    TAGS: "${FOLDER}-dev 1-dev latest-dev"
+    RELEASE_DATE: 2019-07
+  only:
+    changes:
+    - v1.16.0/*
